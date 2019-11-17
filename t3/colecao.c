@@ -1,19 +1,13 @@
 #include <stdlib.h>
+#include <stdio.h>
 #include "colecao.h"
-
-typedef int elem;
-
-struct _no {
-    elem valor;
-    struct _no* esq;
-    struct _no* dir;
-    int altura; // Usado somente na AVL
-};
-
-struct _c {
-    No* inicio;
-    int estrutura_id;
-};
+/*
+#include "lo.h"
+#include "lu.h"
+#include "lp.h"
+#include "avl.h"
+#include "abb.h"
+*/
 
 Colecao* cria_colecao(int estrutura_id) 
 {
@@ -51,7 +45,7 @@ void adiciona(Colecao* c, int valor)
             break;
         
         case 4:
-            insere_ABB(c, n);
+            insere_ABB();
             break;
         
         case 5:
@@ -78,16 +72,46 @@ void destroi(Colecao* c)
         
         case 4:// Arvore binaria de busca.
 
-            return destroi_arv(c->ini);
+            return destroi_arv(c->inicio);
             c->estrutura_id = -1;
             break;
 
         case 5:// Arvore AVL
 
-            return destroi_arv(c->ini);
+            return destroi_arv(c->inicio);
             c->estrutura_id = -1;
             break;
             
     }
 }
 
+int existe(Colecao* c, int valor)
+{
+    switch (c->estrutura_id)
+    {
+        case 1:// Lista ordenada
+
+            break;
+        
+        case 2://Lista c. inserção na ultima pos.
+
+            break;
+
+        case 3:// Lista c. inserção na primeira pos.
+
+            break;
+        
+        case 4:// Arvore binaria de busca.
+
+            return busca_arv(c->inicio);
+            c->estrutura_id = -1;
+            break;
+
+        case 5:// Arvore AVL
+
+            return busca_arv(c->inicio);
+            c->estrutura_id = -1;
+            break;
+            
+    }
+}
