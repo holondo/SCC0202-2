@@ -1,9 +1,22 @@
-all: main
-# compilacao do executável em si, com todos os objetos gerados
-main: main.c 
-	gcc -Wall -o build/main -g main.c 
-# execução do objeto previamente compilado
-colecao: colecao.h
-	gcc -Wall -o build/colecao.o -g colecao.h colecao.c
+all: main auxiliar colecao avl abb lo lp lu
+	gcc -Wall -g build/main.o build/auxiliar.o build/colecao.o build/avl.o build/abb.o build/lo.o build/lp.o build/lu.o -o build/main
+main: main.c
+	gcc -Wall -g main.c -c -o build/main.o 
+auxiliar: auxiliar.c
+	gcc -Wall -g auxiliar.c -c -o build/auxiliar.o
+colecao: colecao.c
+	gcc -Wall -g colecao.c -c -o build/colecao.o
+avl: avl.c
+	gcc -Wall -g avl.c -c -o build/avl.o
+abb: abb.c
+	gcc -Wall -g abb.c -c -o build/abb.o
+lo: lo.c
+	gcc -Wall -g lo.c -c -o build/lo.o
+lp: lp.c
+	gcc -Wall -g lp.c -c -o build/lp.o
+lu: lu.c
+	gcc -Wall -g lu.c -c -o build/lu.o
 run:
-	build/main 
+	./main
+clean:
+	rm build/*
