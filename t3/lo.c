@@ -1,23 +1,23 @@
-#include "listaOrd.h"
+#include "lo.h"
 #include <stdlib.h>
 #include <stdio.h>
 
-struct bloco {
+struct _no {
     elem info;
-    struct bloco *prox;
+    struct _no *prox;
 };
 
-struct listaOrd {
-    Bloco *ini;
+struct _lo {
+    No *ini;
 };
 
-void criar(ListaOrd **l) {
-    *l = malloc(sizeof(ListaOrd));
+void criar_LO(Lo **l) {
+    *l = malloc(sizeof(Lo));
     (*l)->ini = NULL;
     return;
 }
 
-void busca_interna(ListaOrd *l, elem x, Bloco **p, Bloco **ant) {
+void busca_interna(Lo *l, elem x, No **p, No **ant) {
     *p = l->ini; // primeiro da lista
     *ant = NULL; // anterior do primeiro eh nulo
     while (*p != NULL && (*p)->info < x) {
@@ -27,15 +27,15 @@ void busca_interna(ListaOrd *l, elem x, Bloco **p, Bloco **ant) {
     return;
 }
 
-int inserir(ListaOrd *l, elem x) {
-    Bloco *p, *ant, *nova;
+int inserir_LO(Lo *l, elem x) {
+    No *p, *ant, *nova;
     
     busca_interna(l, x, &p, &ant); // busca posicao para insercao
     if (p != NULL && p->info == x)
         return 1; // erro, elemento ja existe
     
     // cria caixa e copia informacao
-    nova = malloc(sizeof(Bloco));
+    nova = malloc(sizeof(No));
     nova->info = x;
     
     // atualiza encadeamento
@@ -48,26 +48,9 @@ int inserir(ListaOrd *l, elem x) {
     return 0; // sucesso
 }
 
-int remover(ListaOrd *l, elem x) {
-    Bloco *p, *ant;
-    
-    busca_interna(l, x, &p, &ant); // busca posicao para insercao
-    if (p == NULL || p->info > x)
-        return 1; // erro, elemento nao existe; casos 1, 2 e 4b
-    
-    // p aponta para caixa a ser removida
-    if (ant == NULL)
-        l->ini = p->prox; // remove no inicio; caso 3
-    else
-        ant->prox = p->prox; // remove no meio ou no final; caso 4a
-    
-    free(p); // libera memoria
-    
-    return 0; // sucesso
-}
 
-int buscar(ListaOrd *l, elem x) {
-    Bloco *aux = l->ini;
+int buscar_LO(Lo *l, elem x) {
+    No *aux = l->ini;
     while (aux != NULL)
         if (aux->info >= x)
             return (aux->info == x); // encontrou ou nao
@@ -76,8 +59,8 @@ int buscar(ListaOrd *l, elem x) {
     return 0; // nao encontrou
 }
 
-void imprimir(ListaOrd *l) {
-    Bloco *aux;
+void imprimir_LO(Lo *l) {
+    No *aux;
     aux = l->ini;
     while (aux != NULL) {
         printf("%c ", aux->info);
@@ -87,8 +70,8 @@ void imprimir(ListaOrd *l) {
     return;
 }
 
-void destruir(ListaOrd **l) {
-    Bloco *aux;
+void destruir_LO(Lo **l) {
+    No *aux;
     while ((*l)->ini != NULL) {
         aux = (*l)->ini;
         (*l)->ini = (*l)->ini->prox;

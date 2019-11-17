@@ -2,9 +2,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-struct no {
+struct _no {
     elem info;
-    struct no *esq, *dir;
+    struct _no *esq, *dir;
 };
 
 struct abb {
