@@ -1,35 +1,19 @@
-#ifndef colecao_h
-    #define colecao_h
+#ifndef __COLECAO__
+    #define __COLECAO__
 
-    typedef int elem;
+    #define LISTA_ORDENADO 1
+    #define LISTA_ULTIMO   2
+    #define LISTA_PRIMEIRO 3
+    #define ARVORE_BINARIA 4
+    #define ARVORE_AVL     5
 
-    typedef struct _no {
-        elem valor;
-        struct _no *no_esq, *no_dir;
-        int altura;
-    } no;
+    typedef struct _no No;
+    typedef struct _c Colecao;
 
-    typedef struct _collection {
-        int tipo;  // Define o tipo de estrutura
-        no* ini; //Aponta para o nó inicial
-    } colecao;
-
-
-    colecao* criar_colecao(int opcao);
-    /*
-        Função que inicializa a colecao conforme a estrutura especificada
-        Return - colecao [tipo = opcao e ini = NULL]
-        Argumentos - 
-        opcao - [0 - Lista ordenada; 1 - Lista insercao ultima pos; 2- Lista insercao primeira pos
-                3 - Árvore binária de busca; 4 - Árvore AVL]
-    */
-
-    no* criar_no(elem valor);
-
-    void add_valor(colecao *c, no* n);
-
-    int existe_no(colecao *c, elem valor);
-
-    void destruir_colecao(colecao *c);
+    Colecao* cria_colecao(int estrutura_id);
+    No* cria_no(int valor);
+    void adiciona(Colecao* c, int valor);
+    int existe(Colecao* c, int valor);
+    void destroi(Colecao* c);
 
 #endif
