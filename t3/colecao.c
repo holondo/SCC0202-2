@@ -1,28 +1,43 @@
-#include "colecao.h"
 #include <stdlib.h>
+#include "colecao.h"
 
+typedef int elem;
 
-colecao* criar_colecao(int opcao) {
-    colecao *aux = malloc(sizeof(colecao));
-    aux->ini = NULL;
-    aux->tipo = opcao;
+struct _no {
+    elem valor;
+    struct _no* esq;
+    struct _no* dir;
+    int altura; // Usado somente na AVL
+};
+
+struct _c {
+    No* inicio;
+    int estrutura_id;
+};
+
+Colecao* cria_colecao(int estrutura_id) 
+{
+    Colecao *aux = malloc(sizeof(Colecao));
+    aux->inicio = NULL;
+    aux->estrutura_id = estrutura_id;
 
     return aux;
 }
 
-no* criar_no(elem valor) {
-    no *aux = malloc(sizeof(no));
+No* cria_no(int valor)
+{
+    No *aux = malloc(sizeof(No));
     aux->altura = -1;
-    aux->no_dir = NULL;
-    aux->no_esq = NULL;
+    aux->dir = NULL;
+    aux->esq = NULL;
     aux->valor = valor;
 
     return aux;
 }
 
-void add_valor(colecao *c, no* n) {
-
-    switch (c->tipo) {
+void adiciona(Colecao* c, int valor)
+{
+    switch (c->estrutura_id) {
         case 1:
             insere_LO();
             break;
@@ -36,7 +51,7 @@ void add_valor(colecao *c, no* n) {
             break;
         
         case 4:
-            insere_ABB();
+            insere_ABB(c, n);
             break;
         
         case 5:
@@ -44,3 +59,35 @@ void add_valor(colecao *c, no* n) {
             break;
     }
 }
+
+void destroi(Colecao* c)
+{
+   switch (c->estrutura_id)
+    {
+        case 1:// Lista ordenada
+
+            break;
+        
+        case 2://Lista c. inserção na ultima pos.
+
+            break;
+
+        case 3:// Lista c. inserção na primeira pos.
+
+            break;
+        
+        case 4:// Arvore binaria de busca.
+
+            return destroi_arv(c->ini);
+            c->estrutura_id = -1;
+            break;
+
+        case 5:// Arvore AVL
+
+            return destroi_arv(c->ini);
+            c->estrutura_id = -1;
+            break;
+            
+    }
+}
+
