@@ -1,15 +1,18 @@
 #include "abb.h"
+#include <stdio.h>
+#include <stdlib.h>
 
-int busca_arv(No *a, int n)
+int busca_ABB(No *a, int n)
 {   
     if(a == NULL) return -1;
     if(a->valor == n) return n;
 
-    if(n > a->valor) return valorABB(a->dir, n);
-    else if(n < a->valor) return valorABB(a->esq, n);
+    if(n > a->valor) return busca_ABB(a->dir, n);
+    else if(n < a->valor) return busca_ABB(a->esq, n);
+    return -1;
 }
 
-int insere_ABB(Colecao *c, No *n)
+void insere_ABB(Colecao *c, No *n)
 {
     if(c->inicio == NULL)
     {
@@ -37,12 +40,12 @@ int insere_ABB(Colecao *c, No *n)
     }
 }
 
-    void destroi_arv(No *n)
-    {
-        if(n == NULL) return;
+void destroi_ABB(No *n)
+{
+    if(n == NULL) return;
 
-        destroi_arv(n->dir);
-        destroi_arv(n->esq);
+    destroi_ABB(n->dir);
+    destroi_ABB(n->esq);
 
-        free(n);
-    }
+    free(n);
+}

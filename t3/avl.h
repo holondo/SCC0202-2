@@ -1,28 +1,5 @@
-#ifndef avl_h
-    #define avl_h
+#include "colecao.h"
 
-    typedef int elem;
-
-    typedef struct no {
-        elem info;
-        struct no *esq, *dir;
-        int fb;
-    } No;
-
-    typedef struct {
-        No *raiz;
-    } AVL;
-
-    void cria(AVL *a);
-    void destroi(AVL *a);
-    int vazia(AVL a);
-    void imprime(AVL a);
-    int altura(AVL a);
-    void preOrdem(AVL a);
-    void emOrdem(AVL a);
-    void posOrdem(AVL a);
-    int busca(AVL a, elem x);
-    int insercao(AVL *a, elem x);
-    int remocao(AVL *a, elem x);
-
-#endif
+int busca_AVL(No *a, int n);
+int insere_ALV(Colecao *c, No *n);
+void destroi_AVL(No *n);

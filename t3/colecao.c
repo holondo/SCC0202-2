@@ -5,9 +5,9 @@
 #include "lo.h"
 #include "lu.h"
 #include "lp.h"
+*/
 #include "avl.h"
 #include "abb.h"
-*/
 
 Colecao* cria_colecao(int estrutura_id) 
 {
@@ -29,7 +29,7 @@ No* cria_no(int valor)
     return aux;
 }
 
-void adiciona(Colecao* c, int valor)
+void adiciona(Colecao* c, No *n)
 {
     switch (c->estrutura_id) {
         case 1:
@@ -45,7 +45,7 @@ void adiciona(Colecao* c, int valor)
             break;
         
         case 4:
-            insere_ABB();
+            insere_ABB(c,n);
             break;
         
         case 5:
@@ -103,15 +103,14 @@ int existe(Colecao* c, int valor)
         
         case 4:// Arvore binaria de busca.
 
-            return busca_arv(c->inicio);
+            return busca_ABB(c->inicio, valor);
             c->estrutura_id = -1;
             break;
 
         case 5:// Arvore AVL
 
-            return busca_arv(c->inicio);
+            return busca_AVL(c->inicio, valor);
             c->estrutura_id = -1;
-            break;
-            
+            break;            
     }
 }
