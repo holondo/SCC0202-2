@@ -24,8 +24,9 @@ void insere_ABB(Colecao *c, No *n)
 
     while (aux != NULL || aux != n)
     {
+        n->altura++;
         if(n->valor == aux->valor) return;
-
+        //free aux
         if(n->valor > aux->valor)
         {
             if(aux->dir == NULL) aux->dir = n;
