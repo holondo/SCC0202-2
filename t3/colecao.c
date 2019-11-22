@@ -33,15 +33,15 @@ void adiciona(Colecao* c, No *n)
 {
     switch (c->estrutura_id) {
         case 1:
-            insere_LO();
+            //insere_LO();
             break;
         
         case 2:
-            insere_LU();
+            //insere_LU();
             break;
         
         case 3:
-            insere_LP();
+            //insere_LP();
             break;
         
         case 4:
@@ -49,7 +49,7 @@ void adiciona(Colecao* c, No *n)
             break;
         
         case 5:
-            insere_AVL();
+            insere_AVL(c, n);
             break;
     }
 }
@@ -72,13 +72,13 @@ void destroi(Colecao* c)
         
         case 4:// Arvore binaria de busca.
 
-            return destroi_arv(c->inicio);
+            return destroi_ABB(c->inicio);
             c->estrutura_id = -1;
             break;
 
         case 5:// Arvore AVL
 
-            return destroi_arv(c->inicio);
+            return destroi_AVL(c->inicio);
             c->estrutura_id = -1;
             break;
             
