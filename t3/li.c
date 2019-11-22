@@ -1,4 +1,6 @@
 #include "colecao.h"
+#include <stdlib.h>
+#include <stdio.h>
 
 void inserir_LO(No *ini, No *n) {
 
@@ -55,7 +57,7 @@ int buscar_LI(No *ini, elem x) {
 
     No *aux = ini;
     while (aux != NULL) {
-        if (aux->valor = x)
+        if (aux->valor == x)
             return 1; //valor existe
         aux = aux->dir;
     }
@@ -72,9 +74,10 @@ void imprimir_LI(No *ini) {
 }
 
 void destruir_LI(No *ini) {
+    No *aux;
     do {
-        No *aux = ini;
+        aux = ini;
         ini = ini->dir;
         free(aux);
-    } while (aux != NULL)
+    } while (aux != NULL);
 }
