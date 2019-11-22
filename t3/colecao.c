@@ -30,15 +30,15 @@ void adiciona(Colecao* c, int valor)
     No *n = cria_no(valor);
     switch (c->estrutura_id) {
         case 1:
-            insere_LO(c->inicio, n);
+            inserir_LO(c, n);
             break;
         
         case 2:
-            insere_LU(c->inicio, n);
+            inserir_LU(c, n);
             break;
         
         case 3:
-            insere_LP(c->inicio, n);
+            inserir_LP(c, n);
             break;
         
         case 4:
@@ -97,4 +97,5 @@ int existe(Colecao* c, int valor)
             return busca_AVL(c->inicio, valor);
             break;            
     }
+    return -1;
 }
