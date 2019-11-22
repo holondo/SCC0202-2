@@ -1,15 +1,11 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "colecao.h"
-/*
-#include "lo.h"
-#include "lu.h"
-#include "lp.h"
-*/
+#include "li.h"
 #include "avl.h"
 #include "abb.h"
 
-Colecao* cria_colecao(int estrutura_id) 
+Colecao* cria_colecao(int estrutura_id)
 {
     Colecao *aux = malloc(sizeof(Colecao));
     aux->inicio = NULL;
@@ -29,19 +25,20 @@ No* cria_no(int valor)
     return aux;
 }
 
-void adiciona(Colecao* c, No *n)
+void adiciona(Colecao* c, int valor)
 {
+    No *n = cria_no(valor);
     switch (c->estrutura_id) {
         case 1:
-            //insere_LO();
+            insere_LO(c->inicio, n);
             break;
         
         case 2:
-            //insere_LU();
+            insere_LU(c->inicio, n);
             break;
         
         case 3:
-            //insere_LP();
+            insere_LP(c->inicio, n);
             break;
         
         case 4:
@@ -59,15 +56,10 @@ void destroi(Colecao* c)
    switch (c->estrutura_id)
     {
         case 1:// Lista ordenada
-
-            break;
-        
         case 2://Lista c. inserção na ultima pos.
-
-            break;
-
         case 3:// Lista c. inserção na primeira pos.
-
+            return destruir_LI(c->inicio);
+            c->estrutura_id = -1;
             break;
         
         case 4:// Arvore binaria de busca.
@@ -90,27 +82,19 @@ int existe(Colecao* c, int valor)
     switch (c->estrutura_id)
     {
         case 1:// Lista ordenada
-
-            break;
-        
         case 2://Lista c. inserção na ultima pos.
-
-            break;
-
         case 3:// Lista c. inserção na primeira pos.
-
+            return buscar_LI(c->inicio, valor);
             break;
-        
+
         case 4:// Arvore binaria de busca.
 
             return busca_ABB(c->inicio, valor);
-            c->estrutura_id = -1;
             break;
 
         case 5:// Arvore AVL
 
             return busca_AVL(c->inicio, valor);
-            c->estrutura_id = -1;
             break;            
     }
 }

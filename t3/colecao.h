@@ -25,7 +25,7 @@
 
     Colecao* cria_colecao(int estrutura_id);
     No* cria_no(int valor);
-    void adiciona(Colecao* c, No *n);
+    void adiciona(Colecao* c, int valor);
     int existe(Colecao* c, int valor);
     void destroi(Colecao* c);
 
