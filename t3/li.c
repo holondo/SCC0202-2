@@ -1,18 +1,17 @@
-#include "colecao.h"
+#include "li.h"
 #include <stdlib.h>
 #include <stdio.h>
 
-void inserir_LO(No *ini, No *n) {
+void inserir_LO(Colecao *c, No *n) {
 
-    if (ini == NULL) {
-        ini = n;
-        n->esq = NULL;
-        n->dir = NULL;
+    if (c->inicio == NULL)
+    {
+        c->inicio = n;
         return;
     }
 
     //Ponteiro para percorrer a lista
-    No *aux = ini;
+    No *aux = c->inicio;
     //
     while (aux->dir != NULL || n->valor < aux->valor) 
        aux = aux->dir;    
@@ -21,6 +20,7 @@ void inserir_LO(No *ini, No *n) {
         n->esq = NULL;
         n->dir = aux;
         aux->esq = n;
+        c->inicio = n;
 
     } else if (aux->dir != NULL) { //Elemento entre pontas
         No *aux_a = aux->esq;
@@ -37,14 +37,30 @@ void inserir_LO(No *ini, No *n) {
     }    
 }
 
-void inserir_LP(No *ini, No *n) {
+void inserir_LP(Colecao *c, No *n)
+{
+    if(c->inicio == NULL)
+    {
+        c->inicio = n;
+        return;
+    }
+
     n->esq = NULL;
-    n->dir = ini;
-    ini->esq = n;
+    n->dir = c->inicio;
+    c->inicio->esq = n;
+    c->inicio = n;
 }
 
-void inserir_LU(No *ini, No *n) {
-    No *aux = ini;
+void inserir_LU(Colecao *c, No *n)
+{
+    if(c->inicio == NULL)
+    {
+        c->inicio = n;
+        return;
+    }
+
+    No *aux = c->inicio;
+
     while (aux->dir != NULL)
         aux = aux->dir;
     aux->dir = n;
