@@ -4,12 +4,12 @@
 
 int busca_AVL(No *a, int n)
 {   
-    if(a == NULL) return -1;
-    if(a->valor == n) return n;
+    if(a == NULL) return 0;
+    if(a->valor == n) return 1;
 
     if(n > a->valor) return busca_AVL(a->dir, n);
     else if(n < a->valor) return busca_AVL(a->esq, n);
-    return -1;
+    return 0;
 }
 
 int altura_Sub(No *n)
@@ -39,10 +39,7 @@ int fator_Sub(No *n)
 }
 No* esq(No *n)
 {
-    //printf("esquerda Numero: %d, fator: %d\n", n->valor, fator_Sub(n));
-
 	No *B = n->dir;
-   // printf("esquerda Numero: %d, fator: %d\n", B->valor, fator_Sub(B));
 	
     n->dir = B->esq;
 	B->esq = n;
@@ -51,7 +48,6 @@ No* esq(No *n)
 
 No* dir(No *n)
 {
-    printf("direita Numero: %d, altura: %d\n", n->valor, n->altura);
 	No *B = n->esq;
 
 	n->esq = B->dir;
@@ -96,7 +92,7 @@ void insere_AVL(Colecao *c, No *n)
 
     No *aux = c->inicio;
 
-    while (aux != NULL || aux != n)
+    while (aux != NULL)
     {
         if(n->valor == aux->valor) return;
         //free aux
@@ -130,7 +126,6 @@ void insere_AVL(Colecao *c, No *n)
 void destroi_AVL(No *n)
 {
     if(n == NULL) return;
-    printf("Numero: %d, altura: %d\n", n->valor, n->altura);
     destroi_AVL(n->dir);
     destroi_AVL(n->esq);
 

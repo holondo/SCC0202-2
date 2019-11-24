@@ -4,12 +4,12 @@
 
 int busca_ABB(No *a, int n)
 {   
-    if(a == NULL) return -1;
-    if(a->valor == n) return n;
+    if(a == NULL) return 0;
+    if(a->valor == n) return 1;
 
     if(n > a->valor) return busca_ABB(a->dir, n);
     else if(n < a->valor) return busca_ABB(a->esq, n);
-    return -1;
+    return 0;
 }
 
 void insere_ABB(Colecao *c, No *n)

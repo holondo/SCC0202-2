@@ -1,5 +1,7 @@
-all: main auxiliar colecao avl abb lo lp lu
-	gcc -Wall -g build/main.o build/auxiliar.o build/colecao.o build/avl.o build/abb.o build/lo.o build/lp.o build/lu.o -o build/main
+all: main auxiliar colecao avl abb li
+	gcc -Wall -g build/main.o build/auxiliar.o build/colecao.o build/avl.o build/abb.o build/li.o -lm -o build/main
+teste: colecao li tli
+		gcc -Wall -g build/tli.o build/auxiliar.o build/colecao.o build/avl.o build/abb.o build/li.o -lm -o build/main
 main: main.c
 	gcc -Wall -g main.c -c -o build/main.o 
 auxiliar: auxiliar.c
@@ -10,13 +12,11 @@ avl: avl.c
 	gcc -Wall -g avl.c -c -o build/avl.o
 abb: abb.c
 	gcc -Wall -g abb.c -c -o build/abb.o
-lo: lo.c
-	gcc -Wall -g lo.c -c -o build/lo.o
-lp: lp.c
-	gcc -Wall -g lp.c -c -o build/lp.o
-lu: lu.c
-	gcc -Wall -g lu.c -c -o build/lu.o
+li: li.c
+	gcc -Wall -g li.c -c -o build/li.o
+tli: tli.c
+	gcc -Wall -g tli.c -c -o build/tli.o
 run:
-	./main
+	build/main
 clean:
 	rm build/*

@@ -38,7 +38,9 @@ int main(int argc, char const *argv[])
 
     inicia_tempo();
     int* insercao = le_inteiros("insercao.txt", N);
+    putchar('0');
     int* busca = le_inteiros("busca.txt", N);
+    putchar('1');
     tempo_leitura = finaliza_tempo();
 
     // insere os valores nas 5 estruturas
@@ -46,30 +48,35 @@ int main(int argc, char const *argv[])
     c_ordenado = cria_colecao(LISTA_ORDENADO);
     for (int i = 0; i < N; i++) 
         adiciona(c_ordenado, insercao[i]);
+    putchar('2');
     tempo_insere_ordenado = finaliza_tempo();
     
     inicia_tempo();
     c_ultimo  = cria_colecao(LISTA_ULTIMO);
     for (int i = 0; i < N; i++)
         adiciona(c_ultimo, insercao[i]);
+    putchar('3');
     tempo_insere_ultimo = finaliza_tempo();
     
     inicia_tempo();
     c_primeiro = cria_colecao(LISTA_PRIMEIRO);
     for (int i = 0; i < N; i++)
         adiciona(c_primeiro, insercao[i]);
+    putchar('4');
     tempo_insere_primeiro = finaliza_tempo();
 
     inicia_tempo();
     c_binaria  = cria_colecao(ARVORE_BINARIA);
     for (int i = 0; i < N; i++)
         adiciona(c_binaria, insercao[i]);
+    putchar('5');
     tempo_insere_binaria = finaliza_tempo();
     
     inicia_tempo();
     c_avl = cria_colecao(ARVORE_AVL);
     for (int i = 0; i < N; i++)
         adiciona(c_avl, insercao[i]);
+    putchar('6');
     tempo_insere_avl = finaliza_tempo();
 
 
@@ -77,6 +84,7 @@ int main(int argc, char const *argv[])
     inicia_tempo();
     for (int i = 0; i < N; i++)
         encontrado_ordenado += existe(c_ordenado, busca[i]);
+    putchar('7');
     tempo_busca_ordenado = finaliza_tempo();
     
     inicia_tempo();
