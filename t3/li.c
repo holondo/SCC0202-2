@@ -98,4 +98,3 @@ void destruir_LI(Colecao *c) {
         // AUX -> INI -> [1]
         // AUX -> [1] INI -> [NULL]
     }
-}

@@ -48,7 +48,6 @@ int main(int argc, char const *argv[])
     c_ordenado = cria_colecao(LISTA_ORDENADO);
     for (int i = 0; i < N; i++) 
         adiciona(c_ordenado, insercao[i]);
-    putchar('2');
     tempo_insere_ordenado = finaliza_tempo();
     
     inicia_tempo();
